@@ -1,4 +1,4 @@
-import styles from './styles.module.css';
+ import styles from './styles.module.css';
 import DishForm from '../../components/dish-form/Dish-form';
 import { useState } from 'react';
 import { IDishShort } from '../../types/types';

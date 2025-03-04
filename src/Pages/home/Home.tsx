@@ -1,8 +1,13 @@
 import { useCallback, useEffect, useState } from 'react';
 import { IDish, IDishesList } from '../../types/types';
 import axiosApi from '../../Api/AxiosApi';
+import DishCard from '../../components/dishCard/DishCard';
+import { CircularProgress, Box } from '@mui/material';
 
-const Home = () => {
+interface Props {
+  addDishToBasket: (dish: IDish) => void
+  }
+  const Home = ({addDishToBasket}: Props) => {
   const [dishes, setDishes] = useState<IDish[]>([]);
   const [loading, setLoading] = useState(false);
 
@@ -26,21 +31,27 @@ const Home = () => {
   useEffect(() => {
     void fetchDishes();
   }, [fetchDishes]);
+  if (loading) {
+    return (
+      <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight: '100vh' }}>
+        <CircularProgress />
+      </Box>
+    );
+  }
 
   return (
     <div>
-      <h1>Home Page</h1>
-      {loading ? <p>Loading...</p> : (
-        <ul>
-          {dishes.map(dish => (
-            <li key={dish.id}>
-              <strong>{dish.name}</strong> - {dish.description} (${dish.price})
-            </li>
-          ))}
-        </ul>
-      )}
-    </div>
-  );
-};
+{loading ? <CircularProgress /> : (
+<>
+{dishes.map(dish => (
+<DishCard key={dish.id} dish={dish}
+addDishToBasket={addDishToBasket} />
+))}
+</>
+)}
+</div>
+);
+}
+
 
 export default Home;

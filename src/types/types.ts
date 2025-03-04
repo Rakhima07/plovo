@@ -11,4 +11,13 @@ export interface IDishShort {
   export interface IDishesList {
     [id: string]: IDishShort;
   }
+  export interface IBasket {
+    dish: IDish
+    count: number
+    }
+    export interface IBasketState {
+    items: IBasket[]
+    totalPrice: number
+    totalCount: number
+    }
   
