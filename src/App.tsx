@@ -19,6 +19,7 @@ function App() {
   const handleAddDish = (dish: IDish) => {
     setBasketState(currentState => addDishToBasket(currentState, dish));
   };
+  
 
   return (
       <>

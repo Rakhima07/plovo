@@ -1,9 +1,11 @@
 import { IBasketState, IDish, IBasket } from '../types/types'
 export const addDishToBasket = (currentState: IBasketState, dish: IDish):
 IBasketState => {
+    
 const existingItemIndex = currentState.items.findIndex((item) => {
 return item.dish.id === dish.id
 })
+
 let newItems: IBasket[]
 if (existingItemIndex !== -1) {
 newItems = currentState.items.map((item, index) => {
