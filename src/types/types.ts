@@ -20,4 +20,14 @@ export interface IDishShort {
     totalPrice: number
     totalCount: number
     }
+  export interface IBasketItem {
+    dish: {
+      id: string;
+      name: string;
+      description: string;
+      price: number;
+    };
+    count: number;
+  }
+  
   

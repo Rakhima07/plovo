@@ -8,6 +8,9 @@ import EditDish from './Pages/edit-dish/edit-dish';
 import { IBasketState, IDish } from './types/types';  
 import { addDishToBasket, syncBasketWithDishes } from './utils/basketHelpers';  
 import { STORAGE_KEY } from './constants';
+import Basket from "./Pages/basket/basket"; 
+import CheckOut from "./Pages/checkout/checkout";
+import Orders from "./Pages/order/Oders";
 
 
 
@@ -30,13 +33,16 @@ function App() {
 
   return (
       <>
-        <Header totalCount={basketState.totalCount} /> {/* Передаем totalCount в Header */}
+        <Header totalCount={basketState.totalCount} />
         <div className="container">
           <Routes>
             <Route path="/" element={<Home addDishToBasket={handleAddDish} handleSyncBasketWithDishes={handleSyncBasketWithDishes} />} />
             <Route path="/add-dish" element={<AddDish />} />
             <Route path="/dishDetail" element={<DishDetail />} />
             <Route path="/edit-dish" element={<EditDish />} />
+            <Route path="/check-out" element={<CheckOut basketState={basketState} setBasketState={setBasketState} />} />
+            <Route path="/orders" element={<Orders />} />
+            <Route path="/basket" element={<Basket basketState={basketState} setBasketState={setBasketState} handleQuantityChange={handleQuantityChange} />} />
           </Routes>
         </div>
       </>
